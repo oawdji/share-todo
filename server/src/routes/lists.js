@@ -59,6 +59,8 @@ router.get('/:shareId', (req, res) => {
       text: item.text,
       completed: item.completed === 1,
       position: item.position,
+      color: item.color || null,
+      parentId: item.parent_id || null,
       createdAt: item.created_at,
     })),
   });

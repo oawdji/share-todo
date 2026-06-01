@@ -27,11 +27,18 @@ export function setupDatabase() {
       text TEXT NOT NULL,
       completed INTEGER NOT NULL DEFAULT 0,
       position INTEGER NOT NULL DEFAULT 0,
+      color TEXT,
+      parent_id TEXT REFERENCES items(id) ON DELETE CASCADE,
       created_at TEXT NOT NULL DEFAULT (datetime('now'))
     );
 
     CREATE INDEX IF NOT EXISTS idx_items_list_id ON items(list_id);
   `);
+
+  // Migration: add new columns for existing databases
+  try { db.exec(`ALTER TABLE items ADD COLUMN color TEXT`); } catch {}
+  try { db.exec(`ALTER TABLE items ADD COLUMN parent_id TEXT REFERENCES items(id) ON DELETE CASCADE`); } catch {}
+  try { db.exec(`CREATE INDEX IF NOT EXISTS idx_items_parent_id ON items(parent_id)`); } catch {}
 }
 
 export default db;

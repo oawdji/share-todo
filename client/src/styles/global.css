@@ -311,6 +311,140 @@ ul {
   background: #f9fdf9;
 }
 
+/* ===== Color-coded borders ===== */
+.todo-item.color-red {
+  border-left: 4px solid #e74c3c;
+  padding-left: 10px;
+}
+
+.todo-item.color-red .todo-text {
+  color: #c0392b;
+}
+
+.todo-item.color-yellow {
+  border-left: 4px solid #f1c40f;
+  padding-left: 10px;
+}
+
+.todo-item.color-yellow .todo-text {
+  color: #b7950b;
+}
+
+.todo-item.color-blue {
+  border-left: 4px solid #3498db;
+  padding-left: 10px;
+}
+
+.todo-item.color-blue .todo-text {
+  color: #2471a3;
+}
+
+.todo-item.color-green {
+  border-left: 4px solid #27ae60;
+  padding-left: 10px;
+}
+
+.todo-item.color-green .todo-text {
+  color: #1e8449;
+}
+
+/* Keep strikethrough for completed items even with color */
+.todo-item.completed .todo-text {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* ===== Color Dots Selector ===== */
+.color-dots {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.color-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+  flex-shrink: 0;
+}
+
+.color-dot:hover {
+  transform: scale(1.3);
+}
+
+.color-dot.active {
+  border-color: #333;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.15);
+  transform: scale(1.2);
+}
+
+/* ===== Subtask Button ===== */
+.btn-subtask {
+  background: #e8f4fd;
+  color: #2980b9;
+  font-size: 11px;
+  padding: 3px 8px;
+}
+
+.btn-subtask:hover {
+  background: #d0e8f8;
+}
+
+/* ===== Depth Indentation ===== */
+.todo-item-wrapper {
+  width: 100%;
+}
+
+.todo-item-wrapper.depth-0 .todo-item {
+  margin-left: 0;
+}
+
+.todo-item-wrapper.depth-1 .todo-item {
+  margin-left: 24px;
+  width: calc(100% - 24px);
+}
+
+.todo-item-wrapper.depth-2 .todo-item {
+  margin-left: 48px;
+  width: calc(100% - 48px);
+}
+
+/* ===== Children Container ===== */
+.todo-children {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== Subtask Form ===== */
+.subtask-form {
+  margin-top: 10px;
+  padding: 12px 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px dashed #d0d0d0;
+}
+
+.subtask-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.subtask-form .input {
+  font-size: 14px;
+  padding: 8px 10px;
+}
+
+.subtask-form-actions {
+  display: flex;
+  gap: 8px;
+}
+
 .todo-check-label {
   position: relative;
   display: flex;
@@ -445,6 +579,41 @@ ul {
   border-top: 1px solid #f0f0f0;
   font-size: 13px;
   color: #999;
+}
+
+/* ===== Drag & Drop ===== */
+.drag-handle {
+  cursor: grab;
+  color: #ccc;
+  font-size: 14px;
+  padding: 0 4px;
+  user-select: none;
+  flex-shrink: 0;
+  line-height: 1;
+  letter-spacing: -2px;
+  transition: color 0.15s;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+.todo-item:hover .drag-handle {
+  color: #999;
+}
+
+.todo-item.dragging {
+  opacity: 0.4;
+}
+
+.todo-item.drag-over-before {
+  border-top: 3px solid #667eea;
+  margin-top: -3px;
+}
+
+.todo-item.drag-over-after {
+  border-bottom: 3px solid #667eea;
+  margin-bottom: -3px;
 }
 
 /* ===== Responsive ===== */
